@@ -5,7 +5,7 @@
     <div class="container">
         <h1>Crea un nuovo Comics</h1>
 
-        <form class="w-50" action="{{route('comics.store')}}" method="POST">
+        <form class="w-50" action="{{route('comics.store')}}"method="POST">
 
             @csrf
 
