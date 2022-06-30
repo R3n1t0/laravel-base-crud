@@ -5,7 +5,7 @@
     <div class="container">
         <h2>Modifica di :{{ $comic->title }}</h2>
 
-        <form class="w-50" action="{{route('comics.update')}}" method="POST">
+        <form class="w-50" action="{{ route('comics.update', $comic) }}" method="POST">
 
             @csrf
             @method('PUT')
