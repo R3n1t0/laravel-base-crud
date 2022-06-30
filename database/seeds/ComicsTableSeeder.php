@@ -1,6 +1,7 @@
 <?php
 use App\Comics;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ComicsTableSeeder extends Seeder
 {
@@ -9,8 +10,18 @@ class ComicsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        $comic = config('comics');
+    public function run(){
+
+        $comics = config('comics');
+
+        foreach($comics as $comic) {
+            $new_comic = new Comics();
+            $new_comic -> title = $comic -> title;
+            $new_comic -> slug = Str::slug($comic -> title, '-');
+            $new_comic -> image = $comic -> image;
+            $new_comic -> type = $comic -> type;
+            $new_comic -> save();
+
+        }
     }
 }
