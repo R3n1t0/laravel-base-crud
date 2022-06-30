@@ -3,6 +3,8 @@
 @section('content')
 
     <div class="container">
+        <h1>Crea un nuovo Comics</h1>
+
         <form class="w-50" action="{{route('comics.store')}}" method="POST">
 
             @csrf
@@ -23,7 +25,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Crea</button>
-          </form>
+        </form>
     </div>
 
 @endsection

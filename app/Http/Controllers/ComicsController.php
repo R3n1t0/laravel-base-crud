@@ -41,10 +41,8 @@ class ComicsController extends Controller
         $data = $request->all();
 
         $new_comic = new Comics();
-        $new_comic->title = $data['title'];
-        $new_comic->image = $data['image'];
-        $new_comic->type = $data['type'];
-        $new_comic ->slug = Str::slug($data['name'], '-');
+        $data['slug'] = Str::slug($data['title'], '-');
+        $new_comic->fill($data);
         $new_comic -> save();
 
         return redirect()->route('comics.show', $new_comic->id);
