@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Comics;
-use Comic;
+
 
 class ComicsController extends Controller
 {
@@ -15,7 +16,7 @@ class ComicsController extends Controller
      */
     public function index()
     {
-        $comics = Comics::all();
+        $comics = Comics::orderBy('id', 'desc')->get();
         return view('comics.index', compact('comics'));
     }
 
@@ -37,7 +38,17 @@ class ComicsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $new_comic = new Comics();
+        $new_comic->title = $data['title'];
+        $new_comic->image = $data['image'];
+        $new_comic->type = $data['type'];
+        $new_comic ->slug = Str::slug($data['name'], '-');
+        $new_comic -> save();
+
+        return redirect()->route('comics.show', $new_comic->id);
+
     }
 
     /**
