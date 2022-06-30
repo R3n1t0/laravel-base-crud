@@ -16,7 +16,6 @@
                         <a class="btn btn-success" href="{{route('comics.edit', $comic)}}">MODIFICA</a>
                     </div>
                 </div>
-
             @endforeach
         </div>
     </div>
