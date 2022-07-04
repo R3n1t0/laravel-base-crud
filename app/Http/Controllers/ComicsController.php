@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Comics;
-
+use App\Http\Requests\ComicRequest;
 
 class ComicsController extends Controller
 {
@@ -36,29 +36,8 @@ class ComicsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ComicRequest $request)
     {
-
-        $request->validate(
-
-            [
-                'title'=>'required|max:255|min:3',
-                'image'=>'required|max:255|min:10',
-                'type'=>'required|max:255|min:3'
-            ],
-            [
-                'title.required'=>'Il campo title &eacute obligatorio',
-                'title.max'=>'Il campo title puo avere al massimo :max caratteri',
-                'title.min'=>'Il campo title puo avere minimo :min caratteri',
-                'image.required'=>'Il campo image &eacute obligatorio',
-                'image.max'=>'Il campo image puo avere al massimo :max caratteri',
-                'image.min'=>'Il campo image puo avere minimo :min caratteri',
-                'type.required'=>'Il campo type &eacute obligatorio',
-                'type.max'=>'Il campo type puo avere al massimo :max caratteri',
-                'type.min'=>'Il campo type puo avere minimo :min caratteri',
-            ]
-
-        );
 
         $data = $request->all();
 
@@ -103,7 +82,7 @@ class ComicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comics $comic)
+    public function update(ComicRequest $request, Comics $comic)
     {
         $data = $request->all();
         $data['slug'] = Str::slug($data['title'], '-');
